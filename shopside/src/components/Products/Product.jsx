@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Product.css";
 import axios from "axios";
-import illu from "../../img/illu.png";
+import { RiShoppingBag3Fill } from "react-icons/ri";
 
 function Product() {
   const [data, setData] = useState(null);
@@ -10,9 +10,15 @@ function Product() {
       setData(i.data);
     });
   }, []);
-  //   console.log(data);
+
   return (
     <div className="main-nav-p">
+      <div className="h1-head">
+        <h1>
+          <RiShoppingBag3Fill />
+          Products
+        </h1>
+      </div>
       <div className="box">
         {data &&
           data.map((i) => (
@@ -20,7 +26,7 @@ function Product() {
               <img src={i.image} />
               <div className="text-section">
                 <h3>{i.title}</h3>
-                <p>{i.price}</p>
+                <p>${i.price}</p>
               </div>
             </div>
           ))}
