@@ -1,0 +1,52 @@
+.main-nav-p {
+  margin-top: 15rem;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.box {
+  width: 20rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: grid;
+  gap: 1rem;
+  max-width: 800px;
+}
+
+.box img {
+  width: 5rem;
+  background-color: white;
+}
+
+.data-box {
+  background-color: white;
+  color: black;
+  gap: 1.5rem;
+  width: 22rem;
+  height: 8rem;
+  display: flex;
+  border: 3px solid orange;
+  padding: 1rem;
+  border-radius: 10px;
+  transition: all 0.4s;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.text-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-section h3 {
+  font-size: 1.2rem;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Show ellipsis (...) for overflow */
+  width: 200px;
+}
+
+.data-box:hover {
+  background-color: #f7c548;
+  transform: translateY(-10px);
+}
