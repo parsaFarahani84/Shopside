@@ -1,0 +1,80 @@
+/* SinglePage.css */
+.left {
+  float: left;
+  display: flex;
+  justify-content: center;
+}
+.mother {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #aff9b2;
+  margin-top: 2rem;
+  padding: 5rem;
+  border-radius: 10px;
+  /* height: 100vh; */
+  border-bottom: 6px solid #45a049;
+  border-top: 6px solid #45a049;
+  /* border: 3px solid #45a049; */
+  width: 100vw;
+}
+
+.right {
+  float: left;
+  width: 90%;
+  padding: 0 20px;
+}
+
+.text-section {
+  margin-bottom: 20px;
+}
+
+.text-section h3 {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  /* gap: 0.5rem; */
+}
+
+h3 span {
+  display: flex;
+  align-items: center;
+  color: #45a049;
+}
+
+.text-section p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgb(64, 64, 64);
+}
+
+.t-h1 {
+  font-size: 2.5rem;
+  margin-top: 0;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  font-size: 1.2rem;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  margin-right: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+button:hover {
+  background-color: #45a049;
+  cursor: pointer;
+}
+
+img {
+  width: 30rem;
+  border: 5px solid #45a049;
+  border-radius: 10px;
+  /* background-color: #45a049; */
+  padding: 1rem;
+}
