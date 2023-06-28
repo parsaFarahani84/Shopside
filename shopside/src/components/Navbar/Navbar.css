@@ -30,6 +30,7 @@
   font-weight: 500;
   cursor: pointer;
   color: #f7c548;
+  border: 3px solid #f7c548;
 }
 
 .tabs-div li:hover {
@@ -96,4 +97,24 @@ header {
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+
+.linka {
+  margin-top: -1rem;
+  list-style: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  transition: all 0.2s;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  color: #f7c548;
+}
+
+.linka:hover {
+  background-color: #f7c548;
+  color: white;
+  transform: translateY(-7px);
+  box-shadow: 1px 9px 30px -20px rgba(0, 0, 0, 0.75);
 }

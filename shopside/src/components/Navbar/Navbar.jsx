@@ -2,6 +2,8 @@ import React from "react";
 import "./Navbar.css";
 import img from "../../img/shopside.png";
 import wave from "../../img/wave.svg";
+import { Link } from "react-router-dom";
+import Product from "../Products/Product";
 
 function Navbar() {
   return (
@@ -21,6 +23,11 @@ function Navbar() {
               </li>
               <li>
                 <a>Contact US</a>
+              </li>
+              <li>
+                <Link to="/products">
+                  <a className="linka">Products</a>
+                </Link>
               </li>
             </ul>
           </div>
