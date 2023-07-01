@@ -71,7 +71,7 @@ button:hover {
   cursor: pointer;
 }
 
-img {
+.left img {
   width: 30rem;
   border: 5px solid #45a049;
   border-radius: 10px;
