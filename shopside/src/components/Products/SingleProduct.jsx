@@ -3,15 +3,20 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./SinglePage.css";
 import { CgDollar } from "react-icons/cg";
-import { BsBack } from "react-icons/bs";
+import { BsBack, BsPlusCircleFill } from "react-icons/bs";
+import { AiFillMinusCircle } from "react-icons/ai";
 import { TiArrowBack } from "react-icons/ti";
 import { SiChainlink } from "react-icons/si";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSelector, useDispatch } from "react-redux";
+import { decrement, increment } from "../counter/CounterSlice";
 
 function SingleProduct() {
   const [real, setReal] = useState([]);
   const data = useParams();
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios
@@ -50,6 +55,18 @@ function SingleProduct() {
             Product Id: {real.id}
           </h4>
           <p>{real.description}</p>
+        </div>
+        <div className="ad-re">
+          <button onClick={() => (count > 0 ? dispatch(decrement()) : 0)}>
+            <AiFillMinusCircle />
+            remove
+          </button>
+
+          <p>{count}</p>
+          <button onClick={() => dispatch(increment())}>
+            <BsPlusCircleFill />
+            Add
+          </button>
         </div>
         <button onClick={notify}>
           <BsBack />

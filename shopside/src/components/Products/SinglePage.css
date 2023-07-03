@@ -57,6 +57,9 @@ button {
   color: white;
   border: none;
   padding: 1rem 2rem;
+  /* width: 10rem; */
+  text-align: center;
+  gap: 0.5rem;
   text-decoration: none;
   font-size: 1.2rem;
   border-radius: 7px;
@@ -77,4 +80,26 @@ button:hover {
   border-radius: 10px;
   /* background-color: #45a049; */
   padding: 1rem;
+}
+
+.ad-re {
+  display: flex;
+  align-items: center;
+  border: 3px solid #4caf50;
+  padding: 1rem;
+  width: 25rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+}
+
+.ad-re button {
+  margin-right: 0 !important;
+}
+
+.ad-re p {
+  font-size: 1.4rem;
+  margin: 0 1rem;
+  padding: 1rem;
+  /* color: white; */
 }
