@@ -23,7 +23,7 @@ function Product() {
       <div className="box">
         {data &&
           data.map((i) => (
-            <Link to={`/products/${i.id}`}>
+            <Link to={`/products/${i.id}`} key={i.id}>
               <div className="data-box">
                 <img src={i.image} />
                 <div className="text-section">

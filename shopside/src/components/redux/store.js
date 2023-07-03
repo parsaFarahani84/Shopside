@@ -29,34 +29,24 @@ export default configureStore({
                 ...tempArr[index],
                 count: tempArr[index].count + 1,
               };
-              console.log(tempArr[index].count);
             }
 
             return tempArr;
           }
-        // case "REMOVE":
-        //   if (!state.find((item) => item.id === action.payload.id)) {
-        //     return (initialState = [
-        //       ...state,
-        //       {
-        //         ...action.payload,
-        //         count: 1,
-        //       },
-        //     ]);
-        //   } else {
-        //     const tempArr = [...state];
-        //     const index = tempArr.findIndex(
-        //       (item) => item.id === action.payload.id
-        //     );
 
-        //     if (index !== -1) {
-        //       tempArr[index] = {
-        //         ...tempArr[index],
-        //         count: tempArr[index].count - 1,
-        //       };
-        //       console.log(tempArr[index].count);
-        //     }
-        //   }
+        case "REMOVE":
+          // const tempArr = [...state];
+          // const index = tempArr.findIndex(
+          //   (item) => item.id === action.payload.id
+          // );
+
+          // if (index !== -1) {
+          //   tempArr[index] = {
+          //     ...tempArr[index],
+          //     count: tempArr[index].count - 1,
+          //   };
+          // }
+          console.log("remove dude");
         default:
           return state;
       }

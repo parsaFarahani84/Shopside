@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 function ShopList() {
   const state = useSelector((state) => state.addcard);
   const dispatch = useDispatch();
+  console.log(state);
 
   let remove = () => {
     let objTest = { type: "REMOVE", payload: state };
@@ -23,7 +24,7 @@ function ShopList() {
       </Link>
       {state.map((i) => {
         return (
-          <div className="pa">
+          <div className="pa" key={i.id}>
             <div className="shop">
               <img src={i.image} />
               <div className="text-section">
@@ -32,7 +33,7 @@ function ShopList() {
                 <p>${i.price}</p>
               </div>
               <button>
-                <FaTrash />
+                <FaTrash onClick={() => remove()} />
               </button>
             </div>
           </div>
