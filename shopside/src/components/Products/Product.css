@@ -45,6 +45,12 @@
   cursor: pointer;
 }
 
+.data-box:hover {
+  box-shadow: 1px 5px 0px 2px rgba(0, 0, 0, 0.75);
+  background-color: #f7c548;
+  transform: translateY(-10px);
+}
+
 .text-section {
   display: flex;
   flex-direction: column;
@@ -58,8 +64,6 @@
   width: 200px;
 }
 
-.data-box:hover {
-  box-shadow: 1px 5px 0px 2px rgba(0, 0, 0, 0.75);
-  background-color: #f7c548;
-  transform: translateY(-10px);
+.pa {
+  padding: 1rem;
 }

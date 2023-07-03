@@ -1,0 +1,43 @@
+.shop {
+  background-color: white;
+  color: black;
+  gap: 1.5rem;
+  width: 50vw;
+  height: 15rem;
+  display: inline-flex;
+  border: 3px solid orange;
+  padding: 1rem;
+  border-radius: 10px;
+  transition: all 0.3s;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.shop:hover {
+  box-shadow: 1px 5px 0px 2px rgba(0, 0, 0, 0.75);
+  background-color: #f7c548;
+  transform: translateY(-10px);
+}
+
+.shop img {
+  width: 10rem;
+}
+
+.shop h3 {
+  font-size: 2rem;
+  width: 500px;
+}
+
+.x {
+  color: #45a049;
+}
+
+.kiki {
+  color: #45a049;
+  display: flex;
+}
+
+.g {
+  font-size: 2.5rem;
+  margin-left: 1rem;
+}
