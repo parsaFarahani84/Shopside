@@ -8,9 +8,8 @@ import { Link } from "react-router-dom";
 function ShopList() {
   const state = useSelector((state) => state.addcard);
   const dispatch = useDispatch();
-  console.log(state);
 
-  let remove = () => {
+  const remove = () => {
     let objTest = { type: "REMOVE", payload: state };
     dispatch(objTest);
   };
@@ -32,8 +31,8 @@ function ShopList() {
                 <h3>{i.title}</h3>
                 <p>${i.price}</p>
               </div>
-              <button>
-                <FaTrash onClick={() => remove()} />
+              <button onClick={() => remove()}>
+                <FaTrash />
               </button>
             </div>
           </div>

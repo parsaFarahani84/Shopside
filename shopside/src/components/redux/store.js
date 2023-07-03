@@ -35,18 +35,7 @@ export default configureStore({
           }
 
         case "REMOVE":
-          // const tempArr = [...state];
-          // const index = tempArr.findIndex(
-          //   (item) => item.id === action.payload.id
-          // );
-
-          // if (index !== -1) {
-          //   tempArr[index] = {
-          //     ...tempArr[index],
-          //     count: tempArr[index].count - 1,
-          //   };
-          // }
-          console.log("remove dude");
+          alert("Worked");
         default:
           return state;
       }
