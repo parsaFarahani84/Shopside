@@ -1,8 +1,15 @@
 .shopbag {
   padding: 0.5rem;
   display: flex;
+  color: green;
+  align-items: center;
+}
+
+.shopbag h3 {
+  text-decoration: none;
+  font-size: 1.5rem;
 }
 
 .imoj {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }

@@ -29,6 +29,11 @@ function Navbar() {
                   <a className="linka">Products</a>
                 </Link>
               </li>
+              <li>
+                <Link to="/shop-list">
+                  <a className="linka">Shop List</a>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
