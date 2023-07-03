@@ -66,6 +66,7 @@ button {
   margin-bottom: 20px;
   margin-right: 1.5rem;
   display: inline-flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -89,12 +90,14 @@ button:hover {
   padding: 1rem;
   width: 25rem;
   justify-content: center;
+  gap: 1rem;
   margin-bottom: 1rem;
   border-radius: 1rem;
 }
 
 .ad-re button {
   margin-right: 0 !important;
+  margin-bottom: 0;
 }
 
 .ad-re p {

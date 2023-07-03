@@ -62,7 +62,6 @@ function SingleProduct() {
             remove
           </button>
 
-          <p>{count}</p>
           <button onClick={() => dispatch(increment())}>
             <BsPlusCircleFill />
             Add
