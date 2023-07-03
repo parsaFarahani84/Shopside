@@ -3,20 +3,27 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./SinglePage.css";
 import { CgDollar } from "react-icons/cg";
-import { BsBack, BsPlusCircleFill } from "react-icons/bs";
-import { AiFillMinusCircle } from "react-icons/ai";
+import { BsBack } from "react-icons/bs";
 import { TiArrowBack } from "react-icons/ti";
 import { SiChainlink } from "react-icons/si";
+import { FaShoppingBasket } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "../counter/CounterSlice";
 
 function SingleProduct() {
   const [real, setReal] = useState([]);
   const data = useParams();
-  const count = useSelector((state) => state.counter.value);
+  // const count = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
+  let increase = () => {
+    let objTest = { type: "ADD", payload: real };
+    dispatch(objTest);
+
+    toast.success("product added");
+    console.log(real);
+  };
 
   useEffect(() => {
     axios
@@ -57,14 +64,14 @@ function SingleProduct() {
           <p>{real.description}</p>
         </div>
         <div className="ad-re">
-          <button onClick={() => (count > 0 ? dispatch(decrement()) : 0)}>
-            <AiFillMinusCircle />
-            remove
-          </button>
-
-          <button onClick={() => dispatch(increment())}>
-            <BsPlusCircleFill />
-            Add
+          <button
+            onClick={() => {
+              dispatch(increment());
+              increase();
+            }}
+          >
+            <FaShoppingBasket />
+            Add To List
           </button>
         </div>
         <button onClick={notify}>

@@ -86,18 +86,32 @@ button:hover {
 .ad-re {
   display: flex;
   align-items: center;
-  border: 3px solid #4caf50;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 0;
   width: 25rem;
-  justify-content: center;
   gap: 1rem;
   margin-bottom: 1rem;
   border-radius: 1rem;
 }
 
 .ad-re button {
-  margin-right: 0 !important;
-  margin-bottom: 0;
+  list-style: none;
+  font-size: 1.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  transition: all 0.2s;
+  margin-bottom: -1rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #45a049;
+  background-color: transparent;
+  border: 3px solid #f7c548;
+}
+
+.ad-re button:hover {
+  background-color: #f7c548;
+  color: white;
+  transform: translateY(-7px);
+  box-shadow: 1px 9px 30px -20px rgba(0, 0, 0, 0.75);
 }
 
 .ad-re p {
