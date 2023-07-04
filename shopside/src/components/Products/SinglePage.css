@@ -25,7 +25,7 @@
 }
 
 .text-section {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .text-section h3 {
@@ -61,7 +61,7 @@ button {
   text-align: center;
   gap: 0.5rem;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border-radius: 7px;
   margin-bottom: 20px;
   margin-right: 1.5rem;
@@ -76,7 +76,7 @@ button:hover {
 }
 
 .left img {
-  width: 30rem;
+  width: 25rem;
   border: 5px solid #45a049;
   border-radius: 10px;
   /* background-color: #45a049; */
@@ -95,7 +95,7 @@ button:hover {
 
 .ad-re button {
   list-style: none;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   padding: 0.75rem 1rem;
   border-radius: 10px;
   transition: all 0.2s;
