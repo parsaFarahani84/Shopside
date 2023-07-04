@@ -37,6 +37,7 @@ function SingleProduct() {
       <div className="left">
         <img src={real.image} />
       </div>
+
       <div className="right">
         <ToastContainer
           theme="dark"
