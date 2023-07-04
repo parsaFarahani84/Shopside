@@ -4,14 +4,15 @@ import { MdArrowBackIos } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import "./Shop.css";
 import { Link } from "react-router-dom";
+import { decrement } from "../counter/CounterSlice";
 
 function ShopList() {
   const state = useSelector((state) => state.addcard);
   const dispatch = useDispatch();
 
-  const remove = () => {
-    let objTest = { type: "REMOVE", payload: state };
-    dispatch(objTest);
+  const remove = (i) => {
+    let objRemove = { type: "REMOVE", payload: i };
+    dispatch(objRemove);
   };
 
   return (
@@ -31,7 +32,12 @@ function ShopList() {
                 <h3>{i.title}</h3>
                 <p>${i.price}</p>
               </div>
-              <button onClick={() => remove()}>
+              <button
+                onClick={() => {
+                  remove(i);
+                  dispatch(decrement());
+                }}
+              >
                 <FaTrash />
               </button>
             </div>
