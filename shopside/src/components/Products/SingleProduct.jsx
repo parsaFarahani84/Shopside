@@ -10,7 +10,7 @@ import { FaShoppingBasket } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import { decrement, increment } from "../counter/CounterSlice";
+import { increment } from "../counter/CounterSlice";
 
 function SingleProduct() {
   const [real, setReal] = useState([]);
