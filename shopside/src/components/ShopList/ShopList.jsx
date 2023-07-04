@@ -6,7 +6,7 @@ import "./Shop.css";
 import { Link } from "react-router-dom";
 import { decrement } from "../counter/CounterSlice";
 import { PiBroomBold } from "react-icons/pi";
-import { makeitclear } from "../counter/CounterSlice";
+import { makeitclear, decreseTot } from "../counter/CounterSlice";
 
 function ShopList() {
   const state = useSelector((state) => state.addcard);
@@ -19,7 +19,6 @@ function ShopList() {
 
   let removeAll = () => {
     let objTest = { type: "ALL", payload: state };
-    console.log(state);
     dispatch(objTest);
     dispatch(makeitclear());
   };
@@ -27,6 +26,7 @@ function ShopList() {
   let remover = (i) => {
     let objtest = { type: "remover", payload: i };
     dispatch(objtest);
+    dispatch(decreseTot(i.count));
   };
 
   return (
