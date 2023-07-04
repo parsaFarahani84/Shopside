@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import CounterSlice from "../counter/CounterSlice";
-import { useState } from "react";
 
 let initialState = [];
 
@@ -52,10 +51,9 @@ export default configureStore({
             return newArr;
           }
 
-        // else {
-        //   state.find((item) => item.id !== action.payload.id);
-        //   return state;
-        // }
+        case "ALL":
+          const tempAll = [];
+          return tempAll;
 
         default:
           return state;

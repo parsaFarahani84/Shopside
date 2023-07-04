@@ -5,6 +5,8 @@ import { FaTrash } from "react-icons/fa";
 import "./Shop.css";
 import { Link } from "react-router-dom";
 import { decrement } from "../counter/CounterSlice";
+import { TiTrash } from "react-icons/ti";
+import { makeitclear } from "../counter/CounterSlice";
 
 function ShopList() {
   const state = useSelector((state) => state.addcard);
@@ -15,13 +17,21 @@ function ShopList() {
     dispatch(objRemove);
   };
 
+  let removeAll = () => {
+    let objTest = { type: "ALL", payload: state };
+    console.log(state);
+    dispatch(objTest);
+    dispatch(makeitclear());
+  };
+
   return (
     <div>
-      <Link to="/products">
-        <div className="kiki">
+      <div className="kiki">
+        <Link to="/products">
           <MdArrowBackIos className="imoj g" />
-        </div>
-      </Link>
+        </Link>
+        <TiTrash onClick={() => removeAll()} className="imoj g k" />
+      </div>
       {state.map((i) => {
         return (
           <div className="pa" key={i.id}>
