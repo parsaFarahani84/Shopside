@@ -55,6 +55,11 @@ export default configureStore({
           const tempAll = [];
           return tempAll;
 
+        case "remover":
+          const tempall = [...state];
+          const newArr = tempall.filter((e) => e.id !== action.payload.id);
+          return newArr;
+
         default:
           return state;
       }

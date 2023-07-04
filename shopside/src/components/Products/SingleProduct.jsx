@@ -15,6 +15,7 @@ import { decrement, increment } from "../counter/CounterSlice";
 function SingleProduct() {
   const [real, setReal] = useState([]);
   const data = useParams();
+  // const count = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
   let increase = () => {
     let objTest = { type: "ADD", payload: real };

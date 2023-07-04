@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MdArrowBackIos } from "react-icons/md";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaMinus } from "react-icons/fa";
 import "./Shop.css";
 import { Link } from "react-router-dom";
 import { decrement } from "../counter/CounterSlice";
-import { TiTrash } from "react-icons/ti";
+import { PiBroomBold } from "react-icons/pi";
 import { makeitclear } from "../counter/CounterSlice";
 
 function ShopList() {
@@ -24,13 +24,18 @@ function ShopList() {
     dispatch(makeitclear());
   };
 
+  let remover = (i) => {
+    let objtest = { type: "remover", payload: i };
+    dispatch(objtest);
+  };
+
   return (
     <div>
       <div className="kiki">
         <Link to="/products">
           <MdArrowBackIos className="imoj g" />
         </Link>
-        <TiTrash onClick={() => removeAll()} className="imoj g k" />
+        <PiBroomBold onClick={() => removeAll()} className="imoj g k" />
       </div>
       {state.map((i) => {
         return (
@@ -42,14 +47,24 @@ function ShopList() {
                 <h3>{i.title}</h3>
                 <p>${i.price}</p>
               </div>
-              <button
-                onClick={() => {
-                  remove(i);
-                  dispatch(decrement());
-                }}
-              >
-                <FaTrash />
-              </button>
+              <div className="emojies">
+                <button
+                  onClick={() => {
+                    remove(i);
+                    dispatch(decrement());
+                  }}
+                >
+                  <FaMinus />
+                </button>
+                <button
+                  onClick={() => {
+                    remover(i);
+                    dispatch(decrement());
+                  }}
+                >
+                  <FaTrash />
+                </button>
+              </div>
             </div>
           </div>
         );
