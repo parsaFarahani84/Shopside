@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -16,7 +16,6 @@ import {
 } from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
 import { CiFilter } from "react-icons/ci";
-import { useCallback } from "react";
 // ----------------------------------------------------
 
 function App() {
@@ -26,32 +25,34 @@ function App() {
   const [nameCategory, setNameCategory] = useState("");
   const [filter, setFilter] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const category = ["men's clothing", "jewelery", "electronics"];
 
   const count = useSelector((state) => state.counter.value);
 
+  // FETCH THE WHOLE DATA
   useEffect(() => {
     axios.get(`https://fakestoreapi.com/products/`).then((i) => {
       setData(i.data);
     });
   }, []);
 
+  // --------------------------SEARCH & CATEGORY-------------------------------
   useEffect(() => {
     const now = data.filter((e) => e.title.includes(search));
     setResult(now);
   }, [search]);
+
+  useEffect(() => {
+    const cat = data.filter((e) => nameCategory == e.category);
+    setResult(cat);
+  }, [nameCategory]);
 
   const searchFun = (e) => {
     e.preventDefault();
     const now = data.filter((e) => e.title.includes(search));
     setResult(now);
   };
-
-  useEffect(() => {
-    const cat = data.filter((e) => nameCategory == e.category);
-    setResult(cat);
-  }, [nameCategory]);
+  // ---------------------------------------------------------------------------
 
   return (
     <BrowserRouter>

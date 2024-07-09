@@ -1,32 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MdArrowBackIos } from "react-icons/md";
 import { FaTrash, FaMinus } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { decrement } from "../counter/CounterSlice";
 import { PiBroomBold } from "react-icons/pi";
-import { makeitclear, decreseTot } from "../counter/CounterSlice";
+import { decrement, makeitclear, decreseTot } from "../counter/CounterSlice";
+import { RootState, AppDispatch } from "../redux/store";
+
+type ProductType = {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  count: number;
+};
 
 function ShopList() {
-  const state = useSelector((state) => state.addcard);
-  const dispatch = useDispatch();
+  const [total, setTotal] = useState(0);
+  const state = useSelector((state: RootState) => state.addcard);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const remove = (i) => {
-    let objRemove = { type: "REMOVE", payload: i };
+  // REMOVE 1 OF THAT PRODUCT
+  const remove = (i: ProductType) => {
+    const objRemove = { type: "REMOVE", payload: i };
     dispatch(objRemove);
   };
 
-  let removeAll = () => {
-    let objTest = { type: "ALL", payload: state };
+  // CLEAR PRODUCTS
+  const removeAll = () => {
+    const objTest = { type: "ALL", payload: state };
     dispatch(objTest);
     dispatch(makeitclear());
   };
 
-  let remover = (i) => {
-    let objtest = { type: "remover", payload: i };
-    dispatch(objtest);
+  // REMOVE THE PRODUCT
+  const remover = (i: ProductType) => {
+    const objTest = { type: "remover", payload: i };
+    dispatch(objTest);
     dispatch(decreseTot(i.count));
   };
+
+  // TOTAL PRICE
+  useEffect(() => {
+    setTotal(
+      parseFloat(
+        state.reduce((acc, e) => acc + e.price * e.count, 0).toFixed(2)
+      )
+    );
+  }, [state]);
 
   return (
     <div>
@@ -38,6 +59,11 @@ function ShopList() {
           onClick={() => removeAll()}
           className="text-[2.5rem] ml-[0.4rem] cursor-pointer transition-all ease-in-out duration-200 hover:text-green-800"
         />
+        <div>
+          <p className="text-[1.5rem] ml-[0.4rem] cursor-pointer transition-all ease-in-out duration-200 hover:text-green-800">
+            Total Price: {total}
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full p-[1rem] sm:p-[2rem] md:p-[3rem]">

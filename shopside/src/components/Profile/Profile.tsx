@@ -3,7 +3,7 @@ import face from "../../img/face.jpg";
 
 const Profile = () => {
   const user = {
-    profilePicture: face, // Replace with actual image URL
+    profilePicture: face,
     name: "Sara Doe",
     email: "sara.doe@example.com",
     bio: "Software developer with a passion for creating amazing applications.",

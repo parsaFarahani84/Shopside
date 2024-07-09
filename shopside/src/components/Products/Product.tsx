@@ -3,12 +3,21 @@ import axios from "axios";
 import { RiShoppingBag3Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
-function Product() {
-  const [data, setData] = useState(null);
+// Define the type for the product
+type ProductType = {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+};
 
+function Product() {
+  const [data, setData] = useState<ProductType[]>([]);
+
+  // GET ALL DATA
   useEffect(() => {
-    axios.get(`https://fakestoreapi.com/products/`).then((i) => {
-      setData(i.data);
+    axios.get(`https://fakestoreapi.com/products/`).then((response) => {
+      setData(response.data);
     });
   }, []);
 
