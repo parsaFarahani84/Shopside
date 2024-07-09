@@ -13,12 +13,20 @@ type ProductType = {
 
 function Product() {
   const [data, setData] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   // GET ALL DATA
   useEffect(() => {
-    axios.get(`https://fakestoreapi.com/products/`).then((response) => {
-      setData(response.data);
-    });
+    axios
+      .get(`https://fakestoreapi.com/products/`)
+      .then((response) => {
+        setData(response.data);
+        setLoading(false); // Set loading to false once data is fetched
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false); // Set loading to false in case of error
+      });
   }, []);
 
   return (
@@ -29,9 +37,11 @@ function Product() {
           Products
         </h1>
       </div>
-      <div className="grid grid-cols-1 gap-4 w-full sm:grid-cols-2 md:grid-cols-4">
-        {data &&
-          data.map((i) => (
+      {loading ? (
+        <p className="text-center text-2xl text-pink-100">Loading...</p>
+      ) : (
+        <div className="grid grid-cols-1 gap-4 w-full sm:grid-cols-2 md:grid-cols-4">
+          {data.map((i) => (
             <Link to={`/products/${i.id}`} key={i.id}>
               <div className="max-w-sm overflow-hidden bg-white h-[25rem] flex flex-col justify-between transition-all duration-300 ease-in-out rounded-[1.5rem] hover:translate-y-[-8px]">
                 <div>
@@ -44,7 +54,6 @@ function Product() {
                     {i.title.length > 30 ? i.title.slice(0, 30) : i.title}
                   </div>
                 </div>
-
                 <div className="flex justify-between items-center px-[2rem] pb-[1rem]">
                   <p className="text-gray-600 text-base flex items-center">
                     Price: ${i.price}
@@ -54,7 +63,8 @@ function Product() {
               </div>
             </Link>
           ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

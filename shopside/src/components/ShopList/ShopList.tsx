@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { decrement, makeitclear, decreseTot } from "../counter/CounterSlice";
 import { Link } from "react-router-dom";
 // -------------ICONS-------------
@@ -43,7 +43,7 @@ function ShopList() {
   };
 
   // TOTAL PRICE
-  useEffect(() => {
+  useMemo(() => {
     setTotal(
       parseFloat(
         state.reduce((acc, e) => acc + e.price * e.count, 0).toFixed(2)

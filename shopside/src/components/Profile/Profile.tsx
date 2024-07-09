@@ -1,4 +1,3 @@
-import React from "react";
 import face from "../../img/face.jpg";
 
 const Profile = () => {

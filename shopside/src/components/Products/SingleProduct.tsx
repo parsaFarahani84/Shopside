@@ -44,6 +44,8 @@ function SingleProduct() {
   // RENDER THE DATA
   useEffect(() => {
     if (data.id) {
+      // loading true
+
       axios
         .get(`https://fakestoreapi.com/products/${data.id}`)
         .then((response) => setReal(response.data));
@@ -55,6 +57,8 @@ function SingleProduct() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 bg-[#aff9b2] mt-[2rem] p-[2rem] md:p-[5rem] rounded-[10px] border-y-[6px] border-solid border-y-[#45a049] w-full md:w-[100vw]">
       <div className="flex justify-center mb-4 md:mb-0">
+        {!real ? <h1>Laoding...</h1> : ""}
+
         {real && (
           <img src={real.image} className="h-auto md:w-[60%] rounded-[1rem]" />
         )}
