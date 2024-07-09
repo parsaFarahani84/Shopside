@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { decrement, makeitclear, decreseTot } from "../counter/CounterSlice";
+import { Link } from "react-router-dom";
+// -------------ICONS-------------
 import { MdArrowBackIos } from "react-icons/md";
 import { FaTrash, FaMinus } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { PiBroomBold } from "react-icons/pi";
-import { decrement, makeitclear, decreseTot } from "../counter/CounterSlice";
+// --------------DATA-------------
+import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../redux/store";
 
 type ProductType = {

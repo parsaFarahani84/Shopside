@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { RiShoppingBag3Fill } from "react-icons/ri";
-import { Link } from "react-router-dom";
 
 // Define the type for the product
 type ProductType = {
@@ -23,7 +23,7 @@ function Product() {
 
   return (
     <div className="flex flex-col items-center justify-center p-[2rem]">
-      <div className="text-center mb-12 text-4xl text-orange-500">
+      <div className="text-center mb-12 text-4xl text-pink-100">
         <h1 className="flex items-center justify-center">
           <RiShoppingBag3Fill />
           Products

@@ -58,7 +58,9 @@ function App() {
     <BrowserRouter>
       <nav className="flex flex-wrap items-center justify-between px-4 md:px-20 py-4 bg-white shadow-md">
         <div className="flex items-center justify-between w-full md:w-auto">
-          <div className="text-2xl font-bold">Shopside</div>
+          <div className="text-2xl font-bold">
+            <Link to="/products">Shopside</Link>
+          </div>
           <button
             className="md:hidden text-2xl"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

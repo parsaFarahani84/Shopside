@@ -1,14 +1,17 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import { increment } from "../counter/CounterSlice";
+// ----------ICONS----------
 import { CgDollar } from "react-icons/cg";
 import { TiArrowBack } from "react-icons/ti";
 import { SiChainlink } from "react-icons/si";
 import { FaShoppingBasket } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
+// ----------DATA----------
 import { useDispatch } from "react-redux";
+// ----------TOSTIFY----------
 import "react-toastify/dist/ReactToastify.css";
-import { increment } from "../counter/CounterSlice";
+import { ToastContainer, toast } from "react-toastify";
 
 // Define the type for a single product
 type ProductType = {
@@ -53,10 +56,7 @@ function SingleProduct() {
     <div className="grid grid-cols-1 md:grid-cols-2 bg-[#aff9b2] mt-[2rem] p-[2rem] md:p-[5rem] rounded-[10px] border-y-[6px] border-solid border-y-[#45a049] w-full md:w-[100vw]">
       <div className="flex justify-center mb-4 md:mb-0">
         {real && (
-          <img
-            src={real.image}
-            className="h-auto w-full md:h-[60%] rounded-[1rem]"
-          />
+          <img src={real.image} className="h-auto md:w-[60%] rounded-[1rem]" />
         )}
       </div>
 
@@ -94,7 +94,7 @@ function SingleProduct() {
         )}
         <div className="flex flex-col md:flex-row md:items-center justify-between items-center py-[1rem] mx-0 w-full rounded-[1rem]">
           <button
-            className="bg-green-600 text-pink-50 w-full md:w-[70%] border-[2px] border-green-600 border-solid py-[1rem] px-[2rem] text-center gap-[0.5rem] no-underline text-[1rem] rounded-[7px] mb-[20px] md:mb-0 md:mr-[1.5rem] inline-flex justify-center items-center cursor-pointer transition-all duration-200 ease-in-out hover:bg-transparent hover:text-green-600"
+            className="bg-green-600 text-pink-50 w-full md:w-[120%] border-[2px] border-green-600 border-solid py-[1rem] px-[2rem] text-center gap-[0.5rem] no-underline text-[1rem] rounded-[7px] mb-[20px] md:mb-0 md:mr-[1.5rem] inline-flex justify-center items-center cursor-pointer transition-all duration-200 ease-in-out hover:bg-transparent hover:text-green-600"
             onClick={() => {
               dispatch(increment());
               increase();
@@ -103,8 +103,8 @@ function SingleProduct() {
             <FaShoppingBasket />
             Add To List
           </button>
-          <Link to="/products" className="w-[100%]">
-            <button className="bg-green-600 text-pink-50 w-full mb-[5rem] md:mb-0 md:items-center md:w-auto border-[2px] border-green-600 border-solid py-[1rem] px-[2rem] text-center gap-[0.5rem] no-underline text-[1rem] rounded-[7px] inline-flex justify-center items-center cursor-pointer transition-all duration-200 ease-in-out hover:bg-transparent hover:text-green-600">
+          <Link to="/products" className="w-full">
+            <button className="bg-green-600 text-pink-50 w-full mb-[5rem] md:mb-0 md:items-center md:w-[80%] border-[2px] border-green-600 border-solid py-[1rem] px-[2rem] text-center gap-[0.5rem] no-underline text-[1rem] rounded-[7px] inline-flex justify-center items-center cursor-pointer transition-all duration-200 ease-in-out hover:bg-transparent hover:text-green-600">
               <TiArrowBack />
               back
             </button>
