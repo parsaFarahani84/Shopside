@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import "./loading.css";
 import { Link, useParams } from "react-router-dom";
@@ -34,13 +34,13 @@ function SingleProduct() {
   const dispatch = useDispatch();
 
   // ADD THE PRODUCT
-  const increase = () => {
+  const increase = useCallback(() => {
     if (real) {
       let objTest = { type: "ADD", payload: real };
       dispatch(objTest);
-      toast.success("product added");
+      toast.success("Product added");
     }
-  };
+  }, [real, dispatch]);
 
   // RENDER THE DATA
   useEffect(() => {
@@ -53,13 +53,10 @@ function SingleProduct() {
     }
   }, [data.id]);
 
-  const notify = () => toast("Your product will be available soon!");
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 bg-[#aff9b2] mt-[2rem] p-[2rem] md:p-[5rem] rounded-[10px] border-y-[6px] border-solid border-y-[#45a049] w-full md:w-[100vw]">
       <div className="flex justify-center mb-4 md:mb-0">
         {!real ? <div className="lds-dual-ring"></div> : ""}
-
         {real && (
           <img src={real.image} className="h-auto md:w-[60%] rounded-[1rem]" />
         )}
