@@ -10,7 +10,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center text-center border-1 border-solid border-stone-50 py-[2rem] px-[1rem] rounded-[10px] w-[30rem] m-auto mt-[4rem] bg-green-600">
+    <div className="flex flex-col justify-center items-center text-center border-1 border-solid border-stone-50 py-[2rem] px-[1rem] rounded-[10px] w-[20rem] md:w-[30rem] m-auto mt-[4rem] bg-green-600">
       <img
         src={user.profilePicture}
         alt="Profile"
