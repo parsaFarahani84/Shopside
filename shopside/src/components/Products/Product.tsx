@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { RiShoppingBag3Fill } from "react-icons/ri";
+import "./loading.css";
 
 // Define the type for the product
 type ProductType = {
@@ -38,7 +39,7 @@ function Product() {
         </h1>
       </div>
       {loading ? (
-        <p className="text-center text-2xl text-pink-100">Loading...</p>
+        <div className="lds-dual-ring"></div>
       ) : (
         <div className="grid grid-cols-1 gap-4 w-full sm:grid-cols-2 md:grid-cols-4">
           {data.map((i) => (
