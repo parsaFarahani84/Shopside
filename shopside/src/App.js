@@ -2,13 +2,11 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
-// ----------COMPONENTS----------
-import Hero from "./components/Hero/Hero";
+import { CgProfile } from "react-icons/cg";
 import Products from "./components/Products/Product";
 import SingleProduct from "./components/Products/SingleProduct";
 import ShopList from "./components/ShopList/ShopList";
 import Profile from "./components/Profile/Profile";
-// ------------------------LOGOS----------------------------
 import { AiFillShopping } from "react-icons/ai";
 import {
   MdOutlineProductionQuantityLimits,
@@ -16,164 +14,107 @@ import {
 } from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
 import { CiFilter } from "react-icons/ci";
-// ----------------------------------------------------
 
 function App() {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [result, setResult] = useState([]);
   const [nameCategory, setNameCategory] = useState("");
-  const [filter, setFilter] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const category = ["men's clothing", "jewelery", "electronics"];
-
   const count = useSelector((state) => state.counter.value);
 
-  // FETCH THE WHOLE DATA
   useEffect(() => {
-    axios.get(`https://fakestoreapi.com/products/`).then((i) => {
-      setData(i.data);
+    axios.get(`https://fakestoreapi.com/products/`).then((response) => {
+      setData(response.data);
     });
   }, []);
 
-  // --------------------------SEARCH & CATEGORY-------------------------------
   useEffect(() => {
-    const now = data.filter((e) => e.title.includes(search));
-    setResult(now);
-  }, [search]);
+    const filteredData = data.filter((item) => item.title.includes(search));
+    setResult(filteredData);
+  }, [search, data]);
 
   useEffect(() => {
-    const cat = data.filter((e) => nameCategory == e.category);
-    setResult(cat);
-  }, [nameCategory]);
+    const filteredByCategory = data.filter(
+      (item) => item.category === nameCategory
+    );
+    setResult(filteredByCategory);
+  }, [nameCategory, data]);
 
   const searchFun = (e) => {
     e.preventDefault();
-    const now = data.filter((e) => e.title.includes(search));
-    setResult(now);
+    const filteredData = data.filter((item) => item.title.includes(search));
+    setResult(filteredData);
   };
-  // ---------------------------------------------------------------------------
 
   return (
     <BrowserRouter>
-      <nav className="flex flex-wrap items-center justify-between px-4 md:px-20 py-4 bg-white shadow-md">
-        <div className="flex items-center justify-between w-full md:w-auto">
+      {/* Main Header */}
+      <header className="flex justify-between items-center px-4 md:px-20 py-4 bg-white shadow-md">
+        <div className="flex items-center gap-4">
+          {/* Profile Button */}
+          <Link to="/profile">
+            <button className="flex items-center gap-1 bg-green-600 text-pink-50 border-2 border-green-600 py-2 px-4 text-sm rounded-md hover:bg-transparent hover:text-green-600">
+              <CgProfile className="text-lg" /> Sara Doe
+            </button>
+          </Link>
+        </div>
+        {/* Center Logo */}
+        <div className="flex-1 text-center">
           <div className="text-2xl font-bold">
             <Link to="/products">Shopside</Link>
           </div>
-          <button
-            className="md:hidden text-2xl"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            ☰
+        </div>
+        {/* Shopping List Button */}
+        <Link to="/shop-list">
+          <button className="flex items-center gap-1 bg-green-600 text-pink-50 border-2 border-green-600 py-2 px-4 text-sm rounded-md hover:bg-transparent hover:text-green-600">
+            <AiFillShopping className="text-lg" /> Card: {count}
           </button>
-        </div>
+        </Link>
+      </header>
 
-        <div
-          className={`w-full md:flex md:items-center md:w-auto ${
-            isMobileMenuOpen ? "block" : "hidden"
-          }`}
+      {/* Subheader */}
+      <div className="flex items-center justify-between px-4 md:px-20 py-2 bg-gray-100 shadow-sm">
+        {/* Search Bar */}
+        <form
+          className="flex items-center w-full max-w-md"
+          onSubmit={searchFun}
         >
-          <div className="flex flex-col md:flex-row md:gap-4 mt-4 md:mt-0">
-            {filter ? (
-              <div className="flex flex-col md:flex-row items-center gap-4">
-                <div className="flex flex-wrap items-center w-full">
-                  {category.map((e) => (
-                    <button
-                      className="py-2 px-4 m-0 flex items-center justify-center mr-4 text-sm"
-                      key={Math.random()}
-                      onClick={() => setNameCategory(e)}
-                    >
-                      {e}
-                    </button>
-                  ))}
-                  <Link to="/products">
-                    <button
-                      className="py-2 m-0 flex items-center justify-center mr-4 text-sm"
-                      onClick={() => {
-                        setNameCategory("");
-                        setSearch("");
-                      }}
-                    >
-                      Clear
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            ) : (
-              <form
-                className="flex items-center justify-center"
-                onSubmit={searchFun}
-              >
-                <BiSearchAlt className="z-50 mr-[-2rem] text-xl md:text-2xl" />
-                <input
-                  className="px-4 py-2 w-full pl-10 rounded-full border-2 border-black border-solid z-40"
-                  placeholder="Search here"
-                  onChange={(e) => setSearch(e.target.value)}
-                  value={search}
-                />
-              </form>
-            )}
-            <button
-              className="bg-green-600 text-pink-50 border-2 border-green-600 py-2 px-4 text-center text-sm rounded-md inline-flex justify-center items-center cursor-pointer transition-all duration-200 ease-in-out hover:bg-transparent hover:text-green-600 mt-4 md:mt-0"
-              onClick={() => {
-                setFilter((prev) => !prev);
-                setNameCategory("");
-                setSearch("");
-              }}
-            >
-              <CiFilter className="text-lg md:text-xl" /> Filter
-            </button>
-          </div>
+          <BiSearchAlt className="absolute ml-2 text-xl" />
+          <input
+            className="pl-10 pr-4 py-2 w-full rounded-full border-2 border-gray-300 focus:outline-none"
+            placeholder="Search here"
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
+        </form>
 
-          <div className="flex md:ml-[1rem] justify-center md:flex-row items-center gap-4 mt-4 md:mt-0 ">
-            <Link to="/shop-list">
-              <button
-                className="bg-green-600 text-pink-50 border-2 border-green-600 py-2 px-4 text-center text-sm rounded-md inline-flex justify-center items-center cursor-pointer transition-all duration-200 ease-in-out hover:bg-transparent hover:text-green-600"
-                onClick={() => {
-                  setNameCategory("");
-                  setSearch("");
-                }}
-              >
-                <AiFillShopping className="text-lg md:text-xl" /> List: {count}
-              </button>
-            </Link>
-
-            <Link to="/products">
-              <button
-                className="bg-green-600 text-pink-50 border-2 border-green-600 py-2 px-4 text-center text-sm rounded-md inline-flex justify-center items-center cursor-pointer transition-all duration-200 ease-in-out hover:bg-transparent hover:text-green-600"
-                onClick={() => {
-                  setNameCategory("");
-                  setSearch("");
-                }}
-              >
-                <MdOutlineProductionQuantityLimits className="text-lg md:text-xl" />{" "}
-                Products
-              </button>
-            </Link>
-
-            <Link to="/profile">
-              <button
-                className="bg-green-600 text-pink-50 border-2 border-green-600 py-2 px-4 text-center text-sm rounded-md inline-flex justify-center items-center cursor-pointer transition-all duration-200 ease-in-out hover:bg-transparent hover:text-green-600"
-                onClick={() => {
-                  setNameCategory("");
-                  setSearch("");
-                }}
-              >
-                <MdSentimentSatisfiedAlt className="text-lg md:text-xl" />{" "}
-                Profile
-              </button>
-            </Link>
-          </div>
+        {/* Filter Selector */}
+        <div className="relative ml-4">
+          <select
+            className="bg-green-600 text-pink-50 border-2 border-green-600 py-2 px-4 text-sm rounded-md cursor-pointer hover:bg-transparent hover:text-green-600"
+            onChange={(e) => setNameCategory(e.target.value)}
+            value={nameCategory}
+          >
+            <option value="">Filter</option>
+            {category.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
         </div>
-      </nav>
+      </div>
+
+      {/* Routes and Product Display */}
       {search || nameCategory ? (
         <div className="grid grid-cols-4 gap-4 w-full mt-[5rem] px-[2rem]">
           {result &&
-            result.map((i) => (
+            result.map((item) => (
               <Link
-                to={`/products/${i.id}`}
-                key={i.id}
+                to={`/products/${item.id}`}
+                key={item.id}
                 onClick={() => {
                   setNameCategory("");
                   setSearch("");
@@ -183,17 +124,18 @@ function App() {
                   <div className="mt-[1rem]">
                     <img
                       className="w-full h-48 object-cover duration-300 p-[1.5rem] transition-all ease-in-out hover:p-[0.5rem]"
-                      src={i.image}
+                      src={item.image}
                       alt="Product Image"
                     />
                     <div className="font-bold text-xl mb-2 text-gray-800 p-6">
-                      {i.title.length > 30 ? i.title.slice(0, 30) : i.title}
+                      {item.title.length > 30
+                        ? item.title.slice(0, 30)
+                        : item.title}
                     </div>
                   </div>
-
                   <div className="flex justify-between items-center px-[2rem] pb-[1rem]">
-                    <p className="text-gray-600 text-base  flex items-center">
-                      Price: ${i.price}
+                    <p className="text-gray-600 text-base flex items-center">
+                      Price: ${item.price}
                     </p>
                     <span className="flex items-center">click to buy</span>
                   </div>
@@ -203,14 +145,10 @@ function App() {
         </div>
       ) : (
         <Routes>
-          <Route path="/" element={<Hero />} />
-
+          <Route path="/" element={<Products />} />
           <Route path="/products" element={<Products />} />
-
           <Route path="/profile" element={<Profile />} />
-
           <Route path="/shop-list" element={<ShopList />} />
-
           <Route path="/products/:id" element={<SingleProduct />} />
         </Routes>
       )}
